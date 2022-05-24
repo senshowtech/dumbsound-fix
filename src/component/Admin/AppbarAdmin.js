@@ -110,7 +110,10 @@ export default function AppbarAdmin({
                 style={{ width: 220 }}
               >
                 {page === "Home" ? (
-                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                  <Box
+                    sx={{ display: "flex", flexDirection: "row" }}
+                    onClick={() => navigate("/admin")}
+                  >
                     <HomeOutlinedIcon color="error" fontSize="large" />
                     <Typography
                       sx={{ ml: 1, mt: 1 }}
