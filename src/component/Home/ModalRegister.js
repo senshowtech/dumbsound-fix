@@ -15,6 +15,7 @@ export default function ModalRegister({
   gender,
   handleRegisterSubmit,
   alert,
+  handleCloseAlertRegister,
 }) {
   const style = {
     position: "absolute",
@@ -60,6 +61,7 @@ export default function ModalRegister({
               </Typography>
               {alert.alert ? (
                 <Alert
+                  onClose={handleCloseAlertRegister}
                   severity="error"
                   sx={{ ml: { md: 12 }, mt: 2, width: "100%" }}
                 >
@@ -73,7 +75,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -99,7 +100,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -126,7 +126,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -152,7 +151,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -184,7 +182,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -211,7 +208,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },

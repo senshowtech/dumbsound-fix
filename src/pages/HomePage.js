@@ -24,7 +24,12 @@ export default function HomePage() {
   const handleCloseRegister = () => setOpenRegister(false);
 
   const [gender, setGender] = React.useState("male");
-  const [alert, setAlert] = React.useState({
+  const [alertLogin, setalertLogin] = React.useState({
+    alert: false,
+    message: "",
+  });
+
+  const [alertRegister, setalertRegister] = React.useState({
     alert: false,
     message: "",
   });
@@ -65,11 +70,18 @@ export default function HomePage() {
         navigate("/user");
       }
     } catch (error) {
-      setAlert({
+      setalertRegister({
         alert: true,
         message: error.response.data.message,
       });
     }
+  };
+
+  const handleCloseAlertRegister = () => {
+    setalertRegister({
+      alert: false,
+      message: "",
+    });
   };
 
   const handleLoginSubmit = async (e) => {
@@ -91,11 +103,18 @@ export default function HomePage() {
         navigate("/user");
       }
     } catch (error) {
-      setAlert({
+      setalertLogin({
         alert: true,
         message: error.response.data.message,
       });
     }
+  };
+
+  const handleCloseAlertLogin = () => {
+    setalertLogin({
+      alert: false,
+      message: "",
+    });
   };
 
   React.useEffect(() => {
@@ -123,20 +142,22 @@ export default function HomePage() {
         <AppbarHome
           ModalRegister={
             <ModalRegister
-              alert={alert}
+              alert={alertRegister}
               handleRegisterSubmit={handleRegisterSubmit}
               openRegister={openRegister}
               handleSelect={handleSelect}
               gender={gender}
               handleCloseRegister={handleCloseRegister}
+              handleCloseAlertRegister={handleCloseAlertRegister}
             />
           }
           ModalLogin={
             <ModalLogin
-              alert={alert}
+              alert={alertLogin}
               handleLoginSubmit={handleLoginSubmit}
               openLogin={openLogin}
               handleCloseLogin={handleCloseLogin}
+              handleCloseAlertLogin={handleCloseAlertLogin}
             />
           }
           handleOpenLogin={handleOpenLogin}

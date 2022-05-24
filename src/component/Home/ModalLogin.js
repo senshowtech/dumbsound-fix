@@ -11,6 +11,7 @@ export default function ModalLogin({
   handleCloseLogin,
   handleLoginSubmit,
   alert,
+  handleCloseAlertLogin,
 }) {
   const style = {
     position: "absolute",
@@ -49,6 +50,7 @@ export default function ModalLogin({
               </Typography>
               {alert.alert ? (
                 <Alert
+                  onClose={handleCloseAlertLogin}
                   severity="error"
                   sx={{ ml: { xs: 3, md: 6 }, mt: 2, width: "100%" }}
                 >
@@ -61,7 +63,6 @@ export default function ModalLogin({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { xs: 3, md: 6 },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
@@ -87,8 +88,6 @@ export default function ModalLogin({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { xs: 3, md: 6 },
-                  "& .Mui-focused": { color: "white" },
-                  "& .Mui-focused": { color: "white" },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
