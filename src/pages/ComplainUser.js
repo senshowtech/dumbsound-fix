@@ -28,7 +28,7 @@ export default function ComplainUser() {
   const [messages, setMessages] = React.useState([]);
 
   React.useEffect(() => {
-    socket = io("http://localhost:5000", {
+    socket = io("https://api.diafragma.xyz", {
       auth: {
         token: localStorage.getItem("token"),
       },
