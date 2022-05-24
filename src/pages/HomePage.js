@@ -100,7 +100,11 @@ export default function HomePage() {
       if (response.status === 201) {
         localStorage.setItem("token", response.data.data.user.token);
         dispatch(LOGIN_SUCCESS(response.data.data.user));
-        navigate("/user");
+        if (response.data.data.user.status === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/user");
+        }
       }
     } catch (error) {
       setalertLogin({

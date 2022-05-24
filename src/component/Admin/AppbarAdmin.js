@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../config/axios";
 
 export default function AppbarAdmin({
   handleOpenNavMenu,
@@ -21,6 +22,25 @@ export default function AppbarAdmin({
   anchorElNav,
 }) {
   const navigate = useNavigate();
+  const [fullname, setFullname] = React.useState(null);
+
+  React.useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const response = await API.get("/users");
+        if (response.data.data.users.status === "user") {
+          navigate("/user");
+        }
+        let fullname = response.data.data.users.fullname;
+        let fullnameSplit = fullname.split(" ");
+        let namaDepan = fullnameSplit[0].substring(0, 2);
+        setFullname(namaDepan);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkUser();
+  }, []);
 
   const Logout = () => {
     localStorage.removeItem("token");
@@ -54,7 +74,7 @@ export default function AppbarAdmin({
               }}
             >
               <Button id="demo-positioned-button" onClick={handleOpenNavMenu}>
-                <Avatar>H</Avatar>
+                <Avatar>{fullname}</Avatar>
               </Button>
             </Box>
           </Box>
