@@ -12,7 +12,14 @@ let socket;
 export default function ComplainAdmin() {
   document.body.style.backgroundColor = "black";
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
   const [contact, setContact] = React.useState(null);
   const [contacts, setContacts] = React.useState([]);
   const [messages, setMessages] = React.useState([]);

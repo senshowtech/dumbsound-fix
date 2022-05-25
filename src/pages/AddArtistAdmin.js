@@ -8,7 +8,14 @@ import Alert from "@mui/material/Alert";
 
 export default function AddArtistAdmin() {
   document.body.style.backgroundColor = "black";
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [loading, setLoading] = React.useState({
     button: false,
@@ -53,6 +60,14 @@ export default function AddArtistAdmin() {
           button: false,
         });
       }
+      setTimeout(
+        () =>
+          setLoading({
+            alert: false,
+            button: false,
+          }),
+        2000
+      );
     } catch (error) {
       console.log(error);
     }

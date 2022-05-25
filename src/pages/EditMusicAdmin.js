@@ -12,7 +12,14 @@ export default function EditMusicAdmin() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const id = state.id;
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [preview, setPreview] = React.useState({

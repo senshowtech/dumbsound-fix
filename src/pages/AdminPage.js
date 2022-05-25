@@ -8,7 +8,14 @@ export default function AdminPage() {
   document.body.style.backgroundColor = "black";
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [transactions, setTransactions] = React.useState(null);
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

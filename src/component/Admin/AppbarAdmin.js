@@ -12,6 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import CommentIcon from "@mui/icons-material/Comment";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../config/axios";
 
@@ -121,6 +122,16 @@ export default function AppbarAdmin({
                       color="initial"
                     >
                       {page}
+                    </Typography>
+                  </Box>
+                ) : page === "Complain Music" ? (
+                  <Box
+                    sx={{ display: "flex", flexDirection: "row" }}
+                    onClick={() => navigate("/admin/complain")}
+                  >
+                    <CommentIcon color="error" sx={{ fontSize: 30 }} />
+                    <Typography sx={{ ml: 1 }} variant="body1" color="initial">
+                      Complain Admin
                     </Typography>
                   </Box>
                 ) : page === "Add Music" ? (
