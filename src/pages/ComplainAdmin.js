@@ -88,7 +88,7 @@ export default function ComplainAdmin() {
       }
       loadContacts();
       const chatMessages = document.getElementById("chat-messages");
-      chatMessages.scrollTop = chatMessages?.scrollHeight;
+      // chatMessages.scrollTop = chatMessages?.scrollHeight;
     });
   };
 

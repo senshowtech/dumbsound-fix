@@ -9,12 +9,21 @@ import TableRow from "@mui/material/TableRow";
 
 export default function TableAdmin({ columns, transactions }) {
   const DataEndDate = (value) => {
+    if (value === "null") {
+      return "expired";
+    }
     let d = new Date(value);
-    let dnow = new Date();
     let bulan = d.getMonth();
     let hari = d.getDate();
     let tahun = d.getFullYear();
     return `${hari}-${bulan}-${tahun}`;
+  };
+  const StatusUser = (value) => {
+    if (value === "success") {
+      return "active";
+    } else {
+      return "inactive";
+    }
   };
   return (
     <Paper sx={{ width: "100%" }}>
@@ -27,7 +36,7 @@ export default function TableAdmin({ columns, transactions }) {
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
-                  sx={{ color: "red" }}
+                  sx={{ color: "red", textAlign: "center" }}
                 >
                   {column.label}
                 </TableCell>
@@ -46,19 +55,45 @@ export default function TableAdmin({ columns, transactions }) {
                   }`}
                   tabIndex={-1}
                 >
-                  <TableCell align="left" sx={{ color: "white" }}>
+                  <TableCell
+                    align="left"
+                    sx={{ color: "white", textAlign: "center" }}
+                  >
                     {value.id}
                   </TableCell>
-                  <TableCell align="left" sx={{ color: "white" }}>
+                  <TableCell
+                    align="left"
+                    sx={{ color: "white", textAlign: "center" }}
+                  >
                     {value.buyer.fullname}
                   </TableCell>
-                  <TableCell align="left" sx={{ color: "white" }}>
+                  <TableCell
+                    align="left"
+                    sx={{ color: "white", textAlign: "center" }}
+                  >
                     {DataEndDate(value.endDate)}
                   </TableCell>
-                  <TableCell align="left" sx={{ color: "white" }}>
-                    {value.status}
+                  <TableCell
+                    align="left"
+                    sx={{
+                      color: value.status === "success" ? "green" : "red",
+                      textAlign: "center",
+                    }}
+                  >
+                    {StatusUser(value.status)}
                   </TableCell>
-                  <TableCell align="left" sx={{ color: "white" }}>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      color:
+                        value.status === "success"
+                          ? "green"
+                          : value.status === "pending"
+                          ? "yellow"
+                          : "red",
+                      textAlign: "center",
+                    }}
+                  >
                     {value.status}
                   </TableCell>
                 </TableRow>
