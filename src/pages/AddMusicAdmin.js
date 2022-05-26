@@ -134,7 +134,7 @@ export default function AddMusicAdmin() {
           mt: 10,
         }}
       >
-        <Typography sx={{ mb: 2, ml: -60 }} variant="h6" color="white">
+        <Typography variant="h6" color="white">
           Add Music
         </Typography>
         <FormAddMusic

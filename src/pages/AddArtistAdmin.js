@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import AppbarAdmin from "../component/Admin/AppbarAdmin";
 import FormAddArtist from "../component/Admin/FormAddArtist";
 import { API } from "../config/axios";
-import Alert from "@mui/material/Alert";
 
 export default function AddArtistAdmin() {
   document.body.style.backgroundColor = "black";
@@ -90,18 +89,9 @@ export default function AddArtistAdmin() {
           mt: 10,
         }}
       >
-        <Typography sx={{ mb: 4, ml: -65 }} variant="h6" color="white">
+        <Typography variant="h6" color="white">
           Add Artist
         </Typography>
-        {loading.alert ? (
-          <Box>
-            <Alert severity="success" sx={{ mb: 2, pl: 5, pr: 5 }}>
-              Data telah di tambahkan
-            </Alert>
-          </Box>
-        ) : (
-          ""
-        )}
         <FormAddArtist
           handleSelect={handleSelect}
           loading={loading}

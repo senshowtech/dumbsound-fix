@@ -7,6 +7,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Alert from "@mui/material/Alert";
 
 export default function FormAddArtist({
   HandleSubmit,
@@ -15,7 +16,16 @@ export default function FormAddArtist({
   handleSelect,
 }) {
   return (
-    <Box sx={{ width: 600 }}>
+    <Box sx={{ width: { xs: 350, md: 600 } }}>
+      {loading.alert ? (
+        <Box>
+          <Alert severity="success" sx={{ mb: 2, pl: 5, pr: 5 }}>
+            Data telah di tambahkan
+          </Alert>
+        </Box>
+      ) : (
+        ""
+      )}
       <form onSubmit={HandleSubmit}>
         <TextField
           size="small"
@@ -77,8 +87,6 @@ export default function FormAddArtist({
               borderColor: "black",
               bgcolor: "#F58033",
               paddingTop: 1,
-              ml: 25,
-              mr: 25,
               mt: 2,
             }}
             loading
@@ -97,8 +105,6 @@ export default function FormAddArtist({
               borderColor: "black",
               bgcolor: "#F58033",
               paddingTop: 1,
-              ml: 25,
-              mr: 25,
               mt: 2,
             }}
             variant="contained"
