@@ -75,16 +75,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },
@@ -100,16 +99,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },
@@ -126,16 +124,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },
@@ -151,16 +148,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },
@@ -182,16 +178,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },
@@ -208,16 +203,15 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },

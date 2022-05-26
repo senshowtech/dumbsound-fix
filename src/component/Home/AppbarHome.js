@@ -51,7 +51,7 @@ export default function AppbarHome({
             >
               <Button
                 size="small"
-                sx={{ pl: 3, pr: 3, mr: 3 }}
+                sx={{ pl: 3, pr: 3, mr: 3, color: "white" }}
                 color="inherit"
                 variant="outlined"
                 onClick={handleOpenLogin}

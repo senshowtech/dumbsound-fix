@@ -32,7 +32,7 @@ export default function Cards({ music, setOpenLogin }) {
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        A
+                        {value.artists.name.split(" ")[0].substring(0, 2)}
                       </Avatar>
                     }
                     title={
