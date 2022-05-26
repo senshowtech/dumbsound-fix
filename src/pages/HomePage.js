@@ -140,7 +140,7 @@ export default function HomePage() {
       <Box
         style={{
           backgroundImage: `url(${require("../assets/img/bgheader.png")})`,
-          height: 612,
+          height: 512,
         }}
       >
         <AppbarHome

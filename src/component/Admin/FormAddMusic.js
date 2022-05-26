@@ -22,7 +22,7 @@ export default function FormAddMusic({
   artistValue,
 }) {
   return (
-    <Box>
+    <Box sx={{ width: { xs: 350, md: 600 } }}>
       {loading.alert ? (
         <Box>
           <Alert severity="success" sx={{ mb: 2, pl: 5, pr: 5 }}>
@@ -36,8 +36,14 @@ export default function FormAddMusic({
         alt=""
       />
       <form onSubmit={HandleSubmit}>
-        <Box sx={{ display: "flex", flexDirection: "row", mb: 2 }}>
-          <Box sx={{ width: 350, mr: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            mb: 2,
+          }}
+        >
+          <Box sx={{ mr: { xs: 0, md: 2 }, width: { md: 365 } }}>
             <TextField
               fullWidth
               size="small"
@@ -61,6 +67,7 @@ export default function FormAddMusic({
                   bgcolor: "gray",
                   paddingTop: 1,
                   paddingBotton: 1,
+                  mt: { xs: 2, md: 0 },
                 }}
                 variant="outlined"
                 endIcon={<AttachFileIcon sx={{ color: "red" }} />}
@@ -154,14 +161,14 @@ export default function FormAddMusic({
               }
             </Box>
           </label>
+        </Box>
+        <Box>
           {loading.button ? (
             <LoadingButton
               sx={{
                 borderColor: "black",
                 bgcolor: "#F58033",
                 paddingTop: 1,
-                ml: 25,
-                mr: 25,
                 mt: 2,
               }}
               loading
@@ -180,8 +187,6 @@ export default function FormAddMusic({
                 borderColor: "black",
                 bgcolor: "#F58033",
                 paddingTop: 1,
-                ml: 25,
-                mr: 25,
                 mt: 2,
               }}
               variant="contained"

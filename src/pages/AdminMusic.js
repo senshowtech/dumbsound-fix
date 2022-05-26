@@ -15,7 +15,14 @@ export default function AdminMusic() {
     { id: "music", label: "Music", minWidth: 170, align: "left" },
     { id: "Action", label: "Action", minWidth: 170, align: "left" },
   ];
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

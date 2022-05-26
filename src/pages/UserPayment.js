@@ -1,16 +1,20 @@
 import React from "react";
+import { API } from "../config/axios";
 import AppbarUser from "../component/User/AppbarUser";
 import Typography from "@mui/material/Typography";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { API } from "../config/axios";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 export default function UserPayment() {
   document.body.style.backgroundColor = "black";
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [payment, setPayment] = React.useState(50000);
+  const [status, setStatus] = React.useState(null);
+  const [changeStatus, setchangeStatus] = React.useState(null);
+
   const pages = ["Home", "Pay", "Complain", "Logout"];
 
   const handleOpenNavMenu = (event) => {
@@ -24,6 +28,19 @@ export default function UserPayment() {
   const handleSelect = (event) => {
     setPayment(event.target.value);
   };
+
+  React.useEffect(() => {
+    const getUserStatus = async () => {
+      try {
+        const response = await API.get("/transactions/user");
+        console.log(response.data.data.dataTransaction);
+        setStatus(response.data.data.dataTransaction);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserStatus();
+  }, [changeStatus]);
 
   React.useEffect(() => {
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
@@ -56,23 +73,36 @@ export default function UserPayment() {
       window.snap.pay(token, {
         onSuccess: async (result) => {
           try {
+            setchangeStatus("success");
             console.log(result);
           } catch (error) {
             console.log(error);
           }
         },
         onPending: (result) => {
+          setchangeStatus("pending");
           console.log(result);
         },
         onError: (result) => {
           console.log(result);
         },
         onClose: () => {
-          alert("you closed the popup without finishing the payment");
+          // alert("you closed the popup without finishing the payment");
+          setchangeStatus("close");
         },
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const NamaPaket = (price) => {
+    if (price === "50000") {
+      return "Paket 1 bulan";
+    } else if (price === "250000") {
+      return "Paket 6 Bulan";
+    } else if (price === "500000") {
+      return "Paket 1 Tahun";
     }
   };
 
@@ -85,81 +115,169 @@ export default function UserPayment() {
         handleOpenNavMenu={handleOpenNavMenu}
         handleCloseNavMenu={handleCloseNavMenu}
       />
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          mt: 12,
-        }}
-      >
-        <Typography variant="h3" sx={{ fontWeight: "bold" }} color="white">
-          Premium
-        </Typography>
-        <Typography
-          variant="h6"
-          color="white"
-          sx={{ mt: 1, color: "red", mb: 2 }}
+      {status?.status === "success" ? (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            mt: 17,
+          }}
         >
-          Nikmati Layanan kami tanpa terbatas
-        </Typography>
-        <form onSubmit={HandleSubmit}>
-          <Box sx={{ width: 550 }}>
-            <Typography variant="body1" color="white">
-              Pilih Paket
-            </Typography>
-            <Select
-              fullWidth
-              size="small"
+          <Typography variant="h4" sx={{ fontWeight: "bold" }} color="white">
+            {`Saat ini anda di ${NamaPaket(status?.price)}`}
+          </Typography>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }} color="red">
+            {`Berlaku hingga ${status?.endDate.split(" ")[0]}`}
+          </Typography>
+        </Box>
+      ) : status?.status === "pending" ? (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            mt: 8,
+          }}
+        >
+          <AccessTimeIcon sx={{ fontSize: 70 }} color="error" />
+          <Typography variant="h5" sx={{ fontWeight: "bold" }} color="white">
+            Pembayaran Anda Terpending
+          </Typography>
+          <form onSubmit={HandleSubmit}>
+            <Box sx={{ width: 550 }}>
+              <Typography variant="body1" color="white">
+                Pilih Paket
+              </Typography>
+              <Select
+                fullWidth
+                size="small"
+                sx={{
+                  bgcolor: "#D2D2D2",
+                  mt: 2,
+                  "& .Mui-focused": { color: "white" },
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "black",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "black",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black",
+                    },
+                  },
+                }}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={payment}
+                name="payment"
+                label="payment"
+                onChange={handleSelect}
+              >
+                <MenuItem value={50000}>Paket 1 Bulan Rp. 50.000</MenuItem>
+                <MenuItem value={250000}>Paket 6 Bulan Rp. 250.000</MenuItem>
+                <MenuItem value={500000}>Paket 1 Tahun Rp. 500.000</MenuItem>
+              </Select>
+            </Box>
+            <Button
+              type="submit"
               sx={{
-                bgcolor: "#D2D2D2",
+                borderColor: "black",
+                bgcolor: "#F58033",
+                paddingTop: 1,
+                ml: 25,
+                mr: 25,
                 mt: 2,
-                "& .Mui-focused": { color: "white" },
-                "& .MuiInput-underline:after": {
-                  borderBottomColor: "black",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "black",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "black",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "black",
-                  },
-                },
               }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={payment}
-              name="payment"
-              label="payment"
-              onChange={handleSelect}
+              variant="contained"
             >
-              <MenuItem value={50000}>Paket 1 Bulan Rp. 50.000</MenuItem>
-              <MenuItem value={250000}>Paket 6 Bulan Rp. 250.000</MenuItem>
-              <MenuItem value={500000}>Paket 1 Tahun Rp. 500.000</MenuItem>
-            </Select>
-          </Box>
-          <Button
-            type="submit"
-            sx={{
-              borderColor: "black",
-              bgcolor: "#F58033",
-              paddingTop: 1,
-              ml: 25,
-              mr: 25,
-              mt: 2,
-            }}
-            variant="contained"
+              <Typography variant="body1" color="white">
+                Beli Lagi
+              </Typography>
+            </Button>
+          </form>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            mt: 12,
+          }}
+        >
+          <Typography variant="h3" sx={{ fontWeight: "bold" }} color="white">
+            Premium
+          </Typography>
+          <Typography
+            variant="h6"
+            color="white"
+            sx={{ mt: 1, color: "red", mb: 2 }}
           >
-            <Typography variant="body1" color="white">
-              Bayar Sekarang
-            </Typography>
-          </Button>
-        </form>
-      </Box>
+            Nikmati Layanan kami tanpa terbatas
+          </Typography>
+          <form onSubmit={HandleSubmit}>
+            <Box sx={{ width: 550 }}>
+              <Typography variant="body1" color="white">
+                Pilih Paket
+              </Typography>
+              <Select
+                fullWidth
+                size="small"
+                sx={{
+                  bgcolor: "#D2D2D2",
+                  mt: 2,
+                  "& .Mui-focused": { color: "white" },
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "black",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "black",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black",
+                    },
+                  },
+                }}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={payment}
+                name="payment"
+                label="payment"
+                onChange={handleSelect}
+              >
+                <MenuItem value={50000}>Paket 1 Bulan Rp. 50.000</MenuItem>
+                <MenuItem value={250000}>Paket 6 Bulan Rp. 250.000</MenuItem>
+                <MenuItem value={500000}>Paket 1 Tahun Rp. 500.000</MenuItem>
+              </Select>
+            </Box>
+            <Button
+              type="submit"
+              sx={{
+                borderColor: "black",
+                bgcolor: "#F58033",
+                paddingTop: 1,
+                ml: 25,
+                mr: 25,
+                mt: 2,
+              }}
+              variant="contained"
+            >
+              <Typography variant="body1" color="white">
+                Beli Sekarang
+              </Typography>
+            </Button>
+          </form>
+        </Box>
+      )}
     </Box>
   );
 }

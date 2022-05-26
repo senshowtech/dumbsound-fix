@@ -8,7 +8,14 @@ import { API } from "../config/axios";
 
 export default function AddMusicAdmin() {
   document.body.style.backgroundColor = "black";
-  const pages = ["Home", "Add Music", "List Music", "Add Artist", "Logout"];
+  const pages = [
+    "Home",
+    "Complain Music",
+    "Add Music",
+    "List Music",
+    "Add Artist",
+    "Logout",
+  ];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [preview, setPreview] = React.useState({
     image: "",
@@ -98,6 +105,14 @@ export default function AddMusicAdmin() {
           button: false,
         });
       }
+      setTimeout(
+        () =>
+          setLoading({
+            alert: false,
+            button: false,
+          }),
+        2000
+      );
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +134,7 @@ export default function AddMusicAdmin() {
           mt: 10,
         }}
       >
-        <Typography sx={{ mb: 2, ml: -60 }} variant="h6" color="white">
+        <Typography variant="h6" color="white">
           Add Music
         </Typography>
         <FormAddMusic

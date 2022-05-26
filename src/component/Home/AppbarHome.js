@@ -10,6 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function AppbarHome({
   pages,
@@ -95,11 +97,39 @@ export default function AppbarHome({
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                "& .MuiPaper-root": {
+                  backgroundColor: "#3A3A3A",
+                },
+                "& .MuiTypography-root": {
+                  color: "white",
+                },
+                color: "white",
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  {/* <Typography textAlign="center">{page}</Typography> */}
+                  {page === "Login" ? (
+                    <Box
+                      sx={{ display: "flex", flexDirection: "row" }}
+                      onClick={handleOpenLogin}
+                    >
+                      <LockOpenIcon color="error" />
+                      <Typography sx={{ ml: 0.8 }} textAlign="center">
+                        {page}
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <Box
+                      sx={{ display: "flex", flexDirection: "row" }}
+                      onClick={handleOpenRegister}
+                    >
+                      <AppRegistrationIcon color="error" />
+                      <Typography sx={{ ml: 0.8 }} textAlign="center">
+                        {page}
+                      </Typography>
+                    </Box>
+                  )}
                 </MenuItem>
               ))}
             </Menu>

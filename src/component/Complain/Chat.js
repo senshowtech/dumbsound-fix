@@ -16,6 +16,7 @@ export default function Chat({ contact, messages, sendMessage, user }) {
         {messages.map((value) => {
           return (
             <Box
+              key={value.id}
               sx={{ display: "flex", mt: 2 }}
               className={`${
                 value.idSender === user
