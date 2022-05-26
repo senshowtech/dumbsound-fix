@@ -43,7 +43,9 @@ export default function ModalLogin({
             <form onSubmit={handleLoginSubmit}>
               <Typography
                 variant="h4"
-                sx={{ ml: { xs: 3, md: 6 } }}
+                sx={{
+                  ml: { xs: 3, md: 6 },
+                }}
                 color="white"
               >
                 Login
@@ -60,22 +62,24 @@ export default function ModalLogin({
               <TextField
                 fullWidth
                 sx={{
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "black",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black",
+                    },
+                  },
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { xs: 3, md: 6 },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "black",
-                    },
                   },
                 }}
                 label="Email"
@@ -88,16 +92,15 @@ export default function ModalLogin({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { xs: 3, md: 6 },
+                  "& label.Mui-focused": {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  },
                   "& .MuiInput-underline:after": {
                     borderBottomColor: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "black",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "black",
                     },

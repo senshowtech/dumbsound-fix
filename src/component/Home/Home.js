@@ -1,10 +1,11 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import Cards from "./Card";
 
 export default function Home({ music, setOpenLogin }) {
   return (
-    <div>
+    <Box>
       <Typography
         style={{ marginTop: 20, marginBottom: 80 }}
         variant="h5"
@@ -14,6 +15,6 @@ export default function Home({ music, setOpenLogin }) {
         Dengarkan Dan Rasakan
       </Typography>
       <Cards music={music} setOpenLogin={setOpenLogin} />
-    </div>
+    </Box>
   );
 }
