@@ -34,7 +34,7 @@ export default function ComplainAdmin() {
   };
 
   React.useEffect(() => {
-    socket = io("https://api.diafragma.xyz", {
+    socket = io("https://api.febrisena.xyz", {
       auth: {
         token: localStorage.getItem("token"),
       },
