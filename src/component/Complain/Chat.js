@@ -32,7 +32,7 @@ export default function Chat({ contact, messages, sendMessage, user }) {
           );
         })}
       </Box>
-      <Box style={{ height: "6vh" }}>
+      <Box style={{ height: "6vh", marginLeft: 10 }}>
         <input
           placeholder="Send Message"
           className="input-message"

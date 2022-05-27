@@ -56,15 +56,13 @@ export default function ComplainUser() {
 
   React.useEffect(() => {
     window.addEventListener("resize", detectSize);
-
+    if (window.innerWidth >= 900) {
+      setHide(false);
+    }
     return () => {
       window.removeEventListener("resize", detectSize);
     };
   }, [windowDimenion]);
-
-  if (windowDimenion.winWidth >= 900) {
-    console.log("cek");
-  }
 
   const detectSize = () => {
     detectHW({
@@ -112,6 +110,9 @@ export default function ComplainUser() {
   const onClickContact = (data) => {
     setContact(data);
     socket.emit("load messages", data.id);
+    if (windowDimenion.winWidth <= 900) {
+      setHide(true);
+    }
   };
 
   const onSendMessage = (e) => {
@@ -144,17 +145,25 @@ export default function ComplainUser() {
                 md={4}
                 sx={{ mt: 2, borderRight: { md: "1px solid white" } }}
               >
-                <Contact
-                  dataContact={contacts}
-                  clickContact={onClickContact}
-                  contact={contact}
-                />
+                {hide === true && windowDimenion.winWidth <= 900 ? null : (
+                  <Contact
+                    dataContact={contacts}
+                    clickContact={onClickContact}
+                    contact={contact}
+                  />
+                )}
               </Grid>
               <Grid
                 item
-                xs={8}
+                xs={12}
                 md={8}
-                sx={{ mt: 2, display: { xs: "none", md: "block" } }}
+                sx={{
+                  mt: 2,
+                  display: {
+                    xs: hide === true ? "block" : "none",
+                    md: "block",
+                  },
+                }}
               >
                 <Chat
                   user={user.user?.id}
