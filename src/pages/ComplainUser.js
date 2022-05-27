@@ -7,25 +7,22 @@ import Chat from "../component/Complain/Chat";
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
+
 let socket;
 
 export default function ComplainUser() {
   document.body.style.backgroundColor = "black";
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const pages = ["Home", "Pay", "Complain", "Logout"];
   const user = useSelector(selectUser);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [contact, setContact] = React.useState(null);
   const [contacts, setContacts] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
+  const [hide, setHide] = React.useState(false);
+  const [windowDimenion, detectHW] = React.useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  });
 
   React.useEffect(() => {
     socket = io("https://api.febrisena.xyz", {
@@ -57,6 +54,31 @@ export default function ComplainUser() {
     };
   }, [messages]); //  di isi contact agar setiap klik menjalankan useEffect
 
+  React.useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    if (window.innerWidth >= 900) {
+      setHide(false);
+    }
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimenion]);
+
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    });
+  };
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   const loadContact = () => {
     socket.emit("load admin contact");
     socket.on("admin contact", async (data) => {
@@ -80,14 +102,17 @@ export default function ComplainUser() {
         }));
         setMessages(dataMessages);
       }
-      const chatMessages = document.getElementById("chat-messages");
-      chatMessages.scrollTop = chatMessages?.scrollHeight;
+      // const chatMessages = document.getElementById("chat-messages");
+      // chatMessages.scrollTop = chatMessages?.scrollHeight;
     });
   };
 
   const onClickContact = (data) => {
     setContact(data);
     socket.emit("load messages", data.id);
+    if (windowDimenion.winWidth <= 900) {
+      setHide(true);
+    }
   };
 
   const onSendMessage = (e) => {
@@ -114,14 +139,32 @@ export default function ComplainUser() {
         <Box>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              <Grid item xs={4} sx={{ mt: 2, borderRight: "1px solid white" }}>
-                <Contact
-                  dataContact={contacts}
-                  clickContact={onClickContact}
-                  contact={contact}
-                />
+              <Grid
+                item
+                xs={12}
+                md={4}
+                sx={{ mt: 2, borderRight: { md: "1px solid white" } }}
+              >
+                {hide === true && windowDimenion.winWidth <= 900 ? null : (
+                  <Contact
+                    dataContact={contacts}
+                    clickContact={onClickContact}
+                    contact={contact}
+                  />
+                )}
               </Grid>
-              <Grid item xs={8} sx={{ mt: 2 }}>
+              <Grid
+                item
+                xs={12}
+                md={8}
+                sx={{
+                  mt: 2,
+                  display: {
+                    xs: hide === true ? "block" : "none",
+                    md: "block",
+                  },
+                }}
+              >
                 <Chat
                   user={user.user?.id}
                   contact={contact}

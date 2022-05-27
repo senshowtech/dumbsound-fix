@@ -112,7 +112,11 @@ export default function AppbarAdmin({
               >
                 {page === "Home" ? (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={() => navigate("/admin")}
                   >
                     <HomeOutlinedIcon color="error" fontSize="large" />
@@ -126,7 +130,11 @@ export default function AppbarAdmin({
                   </Box>
                 ) : page === "Complain Music" ? (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={() => navigate("/admin/complain")}
                   >
                     <CommentIcon color="error" sx={{ fontSize: 30 }} />
@@ -136,7 +144,11 @@ export default function AppbarAdmin({
                   </Box>
                 ) : page === "Add Music" ? (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={() => navigate("/admin/add/music")}
                   >
                     <svg
@@ -165,7 +177,11 @@ export default function AppbarAdmin({
                   </Box>
                 ) : page === "List Music" ? (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={() => navigate("/admin/music")}
                   >
                     <FilterListIcon color="error" />
@@ -175,7 +191,11 @@ export default function AppbarAdmin({
                   </Box>
                 ) : page === "Add Artist" ? (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={() => navigate("/admin/add/artist")}
                   >
                     <svg
@@ -212,7 +232,11 @@ export default function AppbarAdmin({
                   </Box>
                 ) : (
                   <Box
-                    sx={{ display: "flex", flexDirection: "row" }}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                    }}
                     onClick={Logout}
                   >
                     <svg

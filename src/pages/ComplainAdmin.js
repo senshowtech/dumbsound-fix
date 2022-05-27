@@ -23,6 +23,11 @@ export default function ComplainAdmin() {
   const [contact, setContact] = React.useState(null);
   const [contacts, setContacts] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
+  const [hide, setHide] = React.useState(false);
+  const [windowDimenion, detectHW] = React.useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  });
   const user = useSelector(selectUser);
 
   const handleOpenNavMenu = (event) => {
@@ -59,6 +64,23 @@ export default function ComplainAdmin() {
     };
   }, [messages]);
 
+  React.useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    if (window.innerWidth >= 900) {
+      setHide(false);
+    }
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimenion]);
+
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    });
+  };
+
   const loadContacts = () => {
     socket.emit("load custommer contacts");
     socket.emit("load admin contact");
@@ -87,7 +109,7 @@ export default function ComplainAdmin() {
         setMessages(dataMessages);
       }
       loadContacts();
-      const chatMessages = document.getElementById("chat-messages");
+      // const chatMessages = document.getElementById("chat-messages");
       // chatMessages.scrollTop = chatMessages?.scrollHeight;
     });
   };
@@ -95,6 +117,9 @@ export default function ComplainAdmin() {
   const onClickContact = (data) => {
     setContact(data);
     socket.emit("load messages", data.id);
+    if (windowDimenion.winWidth <= 900) {
+      setHide(true);
+    }
   };
 
   const onSendMessage = (e) => {
@@ -121,14 +146,32 @@ export default function ComplainAdmin() {
       <Box>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid item xs={3} sx={{ mt: 2, borderRight: "1px solid white" }}>
-              <Contact
-                dataContact={contacts}
-                clickContact={onClickContact}
-                contact={contact}
-              />
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ mt: 2, borderRight: { md: "1px solid white" } }}
+            >
+              {hide === true && windowDimenion.winWidth <= 900 ? null : (
+                <Contact
+                  dataContact={contacts}
+                  clickContact={onClickContact}
+                  contact={contact}
+                />
+              )}
             </Grid>
-            <Grid item xs={9} sx={{ mt: 2 }}>
+            <Grid
+              item
+              xs={12}
+              md={8}
+              sx={{
+                mt: 2,
+                display: {
+                  xs: hide === true ? "block" : "none",
+                  md: "block",
+                },
+              }}
+            >
               <Chat
                 user={user.user?.id}
                 contact={contact}

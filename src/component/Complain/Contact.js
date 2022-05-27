@@ -6,6 +6,23 @@ import Typography from "@mui/material/Typography";
 export default function Contact({ dataContact, clickContact, contact }) {
   return (
     <Box sx={{ height: "80vh" }}>
+      <Box
+        sx={{
+          mt: 2,
+          padding: 1,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "start",
+        }}
+      >
+        <Typography
+          sx={{ ml: 2, fontWeight: "bold" }}
+          variant="h6"
+          color="white"
+        >
+          Contact
+        </Typography>
+      </Box>
       {dataContact?.map((value) => {
         return (
           <Box
