@@ -9,89 +9,115 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import Pagination from "@mui/material/Pagination";
 import { red } from "@mui/material/colors";
 
-export default function Cards({ music, setOpenLogin }) {
-  // console.log(music);
+export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
-      <Box sx={{ flexGrow: 1, ml: 2, mr: { xs: 2 } }}>
-        <Grid container spacing={2}>
-          {music?.map((value) => {
-            return (
-              <Grid key={value.id} item xs={6} md={3}>
-                <Card
-                  sx={{
-                    maxWidth: { xs: "100%", md: 345 },
-                    height: { xs: 400, sm: 400 },
-                    backgroundColor: "#3A3A3A",
-                    marginBottom: 5,
-                    borderRadius: 5,
-                  }}
-                >
-                  <CardHeader
-                    avatar={
-                      <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        {value.artists.name.split(" ")[0].substring(0, 2)}
-                      </Avatar>
-                    }
-                    title={
-                      <Typography variant="body1" color="white">
-                        {value.artists.name}
-                      </Typography>
-                    }
-                    subheader={
-                      <Typography variant="body1" color="white">
-                        {value.artists.type}
-                      </Typography>
-                    }
-                  />
-                  <CardMedia
-                    style={{ padding: 10, borderRadius: 20 }}
-                    component="img"
-                    height="194"
-                    src={value.thumbnail}
-                    alt="Paella dish"
-                  />
-                  <Box
+    <Box>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box sx={{ flexGrow: 1, ml: 2, mr: { xs: 2 } }}>
+          <Grid container spacing={2}>
+            {music?.rows.map((value) => {
+              return (
+                <Grid key={value.id} item xs={6} md={3}>
+                  <Card
                     sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
+                      maxWidth: { xs: "100%", md: 345 },
+                      height: { xs: 400, sm: 400 },
+                      backgroundColor: "#3A3A3A",
+                      marginBottom: 5,
+                      borderRadius: 5,
                     }}
                   >
-                    <Typography
-                      style={{ padding: 10 }}
-                      variant="h6"
-                      color="white"
+                    <CardHeader
+                      avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                          {value.artists.name.split(" ")[0].substring(0, 2)}
+                        </Avatar>
+                      }
+                      title={
+                        <Typography variant="body1" color="white">
+                          {value.artists.name}
+                        </Typography>
+                      }
+                      subheader={
+                        <Typography variant="body1" color="white">
+                          {value.artists.type}
+                        </Typography>
+                      }
+                    />
+                    <CardMedia
+                      style={{ padding: 10, borderRadius: 20 }}
+                      component="img"
+                      height="194"
+                      src={value.thumbnail}
+                      alt="Paella dish"
+                    />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      {value.title.slice(0, 10) + " ..."}
-                    </Typography>
-                    <Typography
-                      style={{ padding: 10 }}
-                      variant="h6"
-                      color="white"
-                    >
-                      {value.year}
-                    </Typography>
-                  </Box>
-                  <CardActions disableSpacing sx={{ mb: 2 }}>
-                    <IconButton
-                      sx={{ color: "white" }}
-                      aria-label="share"
-                      onClick={setOpenLogin}
-                    >
-                      <PlayCircleOutlineIcon />
-                      <Typography variant="h6" sx={{ ml: 1 }} color="white">
-                        Play
+                      <Typography
+                        style={{ padding: 10 }}
+                        variant="h6"
+                        color="white"
+                      >
+                        {value.title.slice(0, 10) + " ..."}
                       </Typography>
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Grid>
-            );
-          })}
-        </Grid>
+                      <Typography
+                        style={{ padding: 10 }}
+                        variant="h6"
+                        color="white"
+                      >
+                        {value.year}
+                      </Typography>
+                    </Box>
+                    <CardActions disableSpacing sx={{ mb: 2 }}>
+                      <IconButton
+                        sx={{ color: "white" }}
+                        aria-label="share"
+                        onClick={setOpenLogin}
+                      >
+                        <PlayCircleOutlineIcon />
+                        <Typography variant="h6" sx={{ ml: 1 }} color="white">
+                          Play
+                        </Typography>
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box sx={{ width: 350 }}>
+          <Pagination
+            sx={{
+              "& .css-r93niq-MuiButtonBase-root-MuiPaginationItem-root": {
+                bgcolor: "white",
+              },
+              "& .css-1v2lvtn-MuiPaginationItem-root": {
+                color: "white",
+              },
+              "& .Mui-selected": {
+                bgcolor: "#3A3A3A",
+                color: "white",
+              },
+            }}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+            count={Math.ceil(music?.count / 8)}
+            page={page}
+            onChange={handleChangePage}
+          />
+        </Box>
       </Box>
     </Box>
   );

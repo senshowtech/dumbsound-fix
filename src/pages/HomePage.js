@@ -34,6 +34,11 @@ export default function HomePage() {
     message: "",
   });
 
+  const [page, setPage] = React.useState(1);
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+
   const handleSelect = (event) => {
     setGender(event.target.value);
   };
@@ -122,15 +127,15 @@ export default function HomePage() {
   };
 
   React.useEffect(() => {
-    const getMusic = async () => {
+    const getMusicPagination = async () => {
       try {
-        const response = await API.get("/musics");
-        setMusic(response.data.data.musics);
+        const response = await API.get("/musics/pagination/" + page);
+        setMusic(response.data.musics);
       } catch (error) {
         console.log(error);
       }
     };
-    getMusic();
+    getMusicPagination();
   }, []);
 
   const dispatch = useDispatch();
@@ -174,7 +179,12 @@ export default function HomePage() {
         />
       </Box>
       <Box>
-        <Home music={music} setOpenLogin={setOpenLogin} />
+        <Home
+          music={music}
+          page={page}
+          handleChangePage={handleChangePage}
+          setOpenLogin={setOpenLogin}
+        />
       </Box>
     </Box>
   );
