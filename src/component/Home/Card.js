@@ -10,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import Pagination from "@mui/material/Pagination";
-
 import { red } from "@mui/material/colors";
 
 export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
