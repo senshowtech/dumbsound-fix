@@ -13,19 +13,13 @@ import Pagination from "@mui/material/Pagination";
 
 import { red } from "@mui/material/colors";
 
-export default function Cards({ music, setOpenLogin }) {
-  // console.log(music);
-  const [page, setPage] = React.useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-
+export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
   return (
     <Box>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ flexGrow: 1, ml: 2, mr: { xs: 2 } }}>
           <Grid container spacing={2}>
-            {music?.map((value) => {
+            {music?.rows.map((value) => {
               return (
                 <Grid key={value.id} item xs={6} md={3}>
                   <Card
@@ -120,11 +114,10 @@ export default function Cards({ music, setOpenLogin }) {
             variant="outlined"
             shape="rounded"
             color="primary"
-            count={10}
+            count={Math.ceil(music?.count / 8)}
             page={page}
-            onChange={handleChange}
+            onChange={handleChangePage}
           />
-          <Typography color="white">Page: {page}</Typography>
         </Box>
       </Box>
     </Box>

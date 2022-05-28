@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Cards from "./Card";
 
-export default function Home({ music, setOpenLogin }) {
+export default function Home({ music, setOpenLogin, page, handleChangePage }) {
   return (
     <Box>
       <Typography
@@ -14,7 +14,12 @@ export default function Home({ music, setOpenLogin }) {
       >
         Dengarkan Dan Rasakan
       </Typography>
-      <Cards music={music} setOpenLogin={setOpenLogin} />
+      <Cards
+        music={music}
+        page={page}
+        handleChangePage={handleChangePage}
+        setOpenLogin={setOpenLogin}
+      />
     </Box>
   );
 }
