@@ -96,7 +96,13 @@ export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
         </Box>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Box sx={{ width: 350 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: 350,
+          }}
+        >
           <Pagination
             sx={{
               "& .css-r93niq-MuiButtonBase-root-MuiPaginationItem-root": {
