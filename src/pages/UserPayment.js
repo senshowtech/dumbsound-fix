@@ -140,15 +140,16 @@ export default function UserPayment() {
             mt: 8,
           }}
         >
-          <AccessTimeIcon sx={{ fontSize: 70 }} color="error" />
-          <Typography variant="h5" sx={{ fontWeight: "bold" }} color="white">
-            Pembayaran Anda Terpending
-          </Typography>
-          <form onSubmit={HandleSubmit}>
-            <Box sx={{ width: 550 }}>
-              <Typography variant="body1" color="white">
-                Pilih Paket
-              </Typography>
+          <Box>
+            <AccessTimeIcon sx={{ fontSize: 70 }} color="error" />
+          </Box>
+          <Box>
+            <Typography variant="h5" sx={{ fontWeight: "bold" }} color="white">
+              Pembayaran Anda Terpending
+            </Typography>
+          </Box>
+          <Box sx={{ width: 350 }}>
+            <form onSubmit={HandleSubmit}>
               <Select
                 fullWidth
                 size="small"
@@ -182,24 +183,22 @@ export default function UserPayment() {
                 <MenuItem value={250000}>Paket 6 Bulan Rp. 250.000</MenuItem>
                 <MenuItem value={500000}>Paket 1 Tahun Rp. 500.000</MenuItem>
               </Select>
-            </Box>
-            <Button
-              type="submit"
-              sx={{
-                borderColor: "black",
-                bgcolor: "#F58033",
-                paddingTop: 1,
-                ml: 25,
-                mr: 25,
-                mt: 2,
-              }}
-              variant="contained"
-            >
-              <Typography variant="body1" color="white">
-                Beli Lagi
-              </Typography>
-            </Button>
-          </form>
+              <Button
+                type="submit"
+                sx={{
+                  borderColor: "black",
+                  bgcolor: "#F58033",
+                  paddingTop: 1,
+                  mt: 2,
+                }}
+                variant="contained"
+              >
+                <Typography variant="body1" color="white">
+                  Beli Lagi
+                </Typography>
+              </Button>
+            </form>
+          </Box>
         </Box>
       ) : (
         <Box
@@ -221,7 +220,7 @@ export default function UserPayment() {
             Nikmati Layanan kami tanpa terbatas
           </Typography>
           <form onSubmit={HandleSubmit}>
-            <Box sx={{ width: 550 }}>
+            <Box>
               <Typography variant="body1" color="white">
                 Pilih Paket
               </Typography>
