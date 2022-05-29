@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import AppbarAdmin from "../component/Admin/AppbarAdmin";
 import FormAddMusic from "../component/Admin/FormAddMusic";
+import CircularProgress from "@mui/material/CircularProgress";
+import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import { API } from "../config/axios";
 
@@ -27,6 +29,8 @@ export default function AddMusicAdmin() {
   });
   const [artist, setArtist] = React.useState([]);
   const [artistValue, setartistValue] = React.useState("");
+  const [progress, setProgress] = React.useState(10);
+
   const thumbnail = React.useRef(null);
   const song = React.useRef(null);
 
@@ -91,6 +95,10 @@ export default function AddMusicAdmin() {
         headers: {
           "Content-type": "multipart/form-data",
         },
+        onUploadProgress: (data) => {
+          let dataLoad = Math.round((100 * data.loaded) / data.total);
+          setProgress(dataLoad >= 100 ? 0 : dataLoad + 10);
+        },
       };
       const formData = new FormData();
       formData.set("title", e.target.title.value);
@@ -118,6 +126,39 @@ export default function AddMusicAdmin() {
     }
   };
 
+  const CircularProgressWithLabel = (props) => {
+    return (
+      <Box sx={{ position: "relative", display: "inline-flex" }}>
+        <CircularProgress variant="determinate" {...props} />
+        <Box
+          sx={{
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            position: "absolute",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="caption" component="div" color="white">
+            {`${Math.round(props.value)}%`}
+          </Typography>
+        </Box>
+      </Box>
+    );
+  };
+
+  CircularProgressWithLabel.propTypes = {
+    /**
+     * The value of the progress indicator for the determinate variant.
+     * Value between 0 and 100.
+     * @default 0
+     */
+    value: PropTypes.number.isRequired,
+  };
+
   return (
     <Box>
       <AppbarAdmin
@@ -138,6 +179,7 @@ export default function AddMusicAdmin() {
           Add Music
         </Typography>
         <FormAddMusic
+          progressUpload={<CircularProgressWithLabel value={progress} />}
           handleSelect={handleSelect}
           artist={artist}
           artistValue={artistValue}

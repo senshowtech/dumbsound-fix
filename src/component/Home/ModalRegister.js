@@ -75,6 +75,9 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
@@ -99,6 +102,9 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
@@ -124,6 +130,9 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
@@ -148,19 +157,6 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
-                  "& label.Mui-focused": {
-                    color: "red",
-                    fontWeight: "bold",
-                    fontSize: 18,
-                  },
-                  "& .MuiInput-underline:after": {
-                    borderBottomColor: "black",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "&.Mui-focused fieldset": {
-                      borderColor: "black",
-                    },
-                  },
                 }}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -178,6 +174,9 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
@@ -203,6 +202,9 @@ export default function ModalRegister({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { md: 12 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
