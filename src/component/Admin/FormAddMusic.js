@@ -11,6 +11,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function FormAddMusic({
+  progressUpload,
   handleChangeThumbnail,
   handleChangeSong,
   HandleSubmit,
@@ -48,7 +49,25 @@ export default function FormAddMusic({
               fullWidth
               size="small"
               name="title"
-              sx={{ bgcolor: "gray" }}
+              sx={{
+                bgcolor: "gray",
+                "& .MuiFormLabel-filled": {
+                  color: "white",
+                },
+                "& label.Mui-focused": {
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: 18,
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "black",
+                },
+                "& .MuiOutlinedInput-root": {
+                  "&.Mui-focused fieldset": {
+                    borderColor: "black",
+                  },
+                },
+              }}
               label="Title"
             />
           </Box>
@@ -83,7 +102,25 @@ export default function FormAddMusic({
           <TextField
             size="small"
             fullWidth
-            sx={{ bgcolor: "gray" }}
+            sx={{
+              bgcolor: "gray",
+              "& .MuiFormLabel-filled": {
+                color: "white",
+              },
+              "& label.Mui-focused": {
+                color: "white",
+                fontWeight: "bold",
+                fontSize: 18,
+              },
+              "& .MuiInput-underline:after": {
+                borderBottomColor: "black",
+              },
+              "& .MuiOutlinedInput-root": {
+                "&.Mui-focused fieldset": {
+                  borderColor: "black",
+                },
+              },
+            }}
             label="Year"
             name="year"
           />
@@ -164,22 +201,25 @@ export default function FormAddMusic({
         </Box>
         <Box>
           {loading.button ? (
-            <LoadingButton
-              sx={{
-                borderColor: "black",
-                bgcolor: "#F58033",
-                paddingTop: 1,
-                mt: 2,
-              }}
-              loading
-              loadingPosition="start"
-              startIcon={<SaveIcon />}
-              variant="outlined"
-            >
-              <Typography variant="body1" color="white">
-                Add Song
-              </Typography>
-            </LoadingButton>
+            <Box sx={{ display: "flex" }}>
+              <LoadingButton
+                sx={{
+                  borderColor: "black",
+                  bgcolor: "#F58033",
+                  paddingTop: 1,
+                  mt: 2,
+                }}
+                loading
+                loadingPosition="start"
+                startIcon={<SaveIcon />}
+                variant="outlined"
+              >
+                <Typography variant="body1" color="white">
+                  Add Song
+                </Typography>
+              </LoadingButton>
+              <Box sx={{ mt: 2, ml: 2 }}>{progressUpload}</Box>
+            </Box>
           ) : (
             <Button
               type="submit"

@@ -30,14 +30,52 @@ export default function FormAddArtist({
         <TextField
           size="small"
           fullWidth
-          sx={{ bgcolor: "gray", mb: 2 }}
+          sx={{
+            bgcolor: "gray",
+            mb: 2,
+            "& .MuiFormLabel-filled": {
+              color: "white",
+            },
+            "& label.Mui-focused": {
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 18,
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "black",
+            },
+            "& .MuiOutlinedInput-root": {
+              "&.Mui-focused fieldset": {
+                borderColor: "black",
+              },
+            },
+          }}
           label="Name"
           name="name"
         />
         <TextField
           size="small"
           fullWidth
-          sx={{ bgcolor: "gray", mb: 2 }}
+          sx={{
+            bgcolor: "gray",
+            mb: 2,
+            "& .MuiFormLabel-filled": {
+              color: "white",
+            },
+            "& label.Mui-focused": {
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 18,
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "black",
+            },
+            "& .MuiOutlinedInput-root": {
+              "&.Mui-focused fieldset": {
+                borderColor: "black",
+              },
+            },
+          }}
           label="Old"
           name="old"
         />
@@ -47,21 +85,6 @@ export default function FormAddArtist({
           sx={{
             mb: 2,
             bgcolor: "#D2D2D2",
-            "& .Mui-focused": { color: "white" },
-            "& .MuiInput-underline:after": {
-              borderBottomColor: "black",
-            },
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "black",
-              },
-              "&:hover fieldset": {
-                borderColor: "black",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "black",
-              },
-            },
           }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -77,7 +100,25 @@ export default function FormAddArtist({
         <TextField
           size="small"
           fullWidth
-          sx={{ bgcolor: "gray" }}
+          sx={{
+            bgcolor: "gray",
+            "& .MuiFormLabel-filled": {
+              color: "white",
+            },
+            "& label.Mui-focused": {
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 18,
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "black",
+            },
+            "& .MuiOutlinedInput-root": {
+              "&.Mui-focused fieldset": {
+                borderColor: "black",
+              },
+            },
+          }}
           label="Start Career"
           name="startcareer"
         />

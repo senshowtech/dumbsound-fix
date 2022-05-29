@@ -62,6 +62,9 @@ export default function ModalLogin({
               <TextField
                 fullWidth
                 sx={{
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
@@ -92,6 +95,9 @@ export default function ModalLogin({
                   bgcolor: "#D2D2D2",
                   mt: 2,
                   ml: { xs: 3, md: 6 },
+                  "& .MuiFormLabel-filled": {
+                    color: "red",
+                  },
                   "& label.Mui-focused": {
                     color: "red",
                     fontWeight: "bold",
