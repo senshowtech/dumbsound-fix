@@ -133,24 +133,6 @@ export default function EditMusicAdmin() {
           navigate("/admin/music");
         }
       }
-      // const config = {
-      //   headers: {
-      //     "Content-type": "multipart/form-data",
-      //   },
-      // };
-      // const formData = new FormData();
-      // formData.set("title", e.target.title.value);
-      // formData.set("year", e.target.year.value);
-      // formData.set("artistId", artistValue);
-      // formData.set("thumbnail", thumbnail.current, thumbnail.current.name);
-      // formData.set("song", song.current, song.current.name);
-      // const response = await API.post("music/add", formData, config);
-      // if (response.status === 201) {
-      //   setLoading({
-      //     alert: true,
-      //     button: false,
-      //   });
-      // }
     } catch (error) {
       console.log(error);
     }

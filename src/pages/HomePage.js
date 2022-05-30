@@ -8,12 +8,15 @@ import AppbarHome from "../component/Home/AppbarHome";
 import Home from "../component/Home/Home";
 import ModalLogin from "../component/Home/ModalLogin";
 import ModalRegister from "../component/Home/ModalRegister";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function HomePage() {
   const navigate = useNavigate();
   const pages = ["Login", "Register"];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [music, setMusic] = React.useState(null);
+  const [backdrop, setBackdrop] = React.useState(false);
 
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
@@ -52,6 +55,7 @@ export default function HomePage() {
   };
 
   const handleRegisterSubmit = async (e) => {
+    setTimeout(() => setBackdrop(true), 6000);
     e.preventDefault();
     try {
       const config = {
@@ -72,7 +76,9 @@ export default function HomePage() {
       if (response.status === 201) {
         localStorage.setItem("token", response.data.data.user.token);
         dispatch(LOGIN_SUCCESS(response.data.data.user));
-        navigate("/user");
+        setOpenLogin(false);
+        setBackdrop(true);
+        setTimeout(() => navigate("/user"), 6000);
       }
     } catch (error) {
       setalertRegister({
@@ -106,9 +112,13 @@ export default function HomePage() {
         localStorage.setItem("token", response.data.data.user.token);
         dispatch(LOGIN_SUCCESS(response.data.data.user));
         if (response.data.data.user.status === "admin") {
-          navigate("/admin");
+          setOpenLogin(false);
+          setBackdrop(true);
+          setTimeout(() => navigate("/admin"), 6000);
         } else {
-          navigate("/user");
+          setOpenLogin(false);
+          setBackdrop(true);
+          setTimeout(() => navigate("/user"), 6000);
         }
       }
     } catch (error) {
@@ -142,6 +152,12 @@ export default function HomePage() {
 
   return (
     <Box style={{ backgroundColor: "black" }}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={backdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Box
         style={{
           backgroundImage: `url(${require("../assets/img/bgheader.png")})`,
