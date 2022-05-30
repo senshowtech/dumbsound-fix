@@ -20,13 +20,12 @@ export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
           <Grid container spacing={2}>
             {music?.rows.map((value) => {
               return (
-                <Grid key={value.id} item xs={6} md={3}>
+                <Grid key={value.id} item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
                       maxWidth: { xs: "100%", md: 345 },
-                      height: { xs: 400, sm: 400 },
                       backgroundColor: "#3A3A3A",
-                      marginBottom: 5,
+                      marginBottom: { xs: 2, md: 5 },
                       borderRadius: 5,
                     }}
                   >
@@ -47,12 +46,18 @@ export default function Cards({ music, setOpenLogin, page, handleChangePage }) {
                         </Typography>
                       }
                     />
-                    <CardMedia
-                      style={{ padding: 10, borderRadius: 20 }}
-                      component="img"
-                      height="194"
+                    <img
+                      style={{
+                        display: "block",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: "100%",
+                        height: 194,
+                        padding: 8,
+                        borderRadius: 15,
+                      }}
                       src={value.thumbnail}
-                      alt="Paella dish"
+                      alt="..."
                     />
                     <Box
                       sx={{
