@@ -75,7 +75,7 @@ export default function HomePage() {
       if (response.status === 201) {
         localStorage.setItem("token", response.data.data.user.token);
         dispatch(LOGIN_SUCCESS(response.data.data.user));
-        setOpenLogin(false);
+        setOpenRegister(false);
         setBackdrop(true);
         setTimeout(() => navigate("/user"), 6000);
       }
