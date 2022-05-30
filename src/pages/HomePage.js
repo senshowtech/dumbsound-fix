@@ -55,7 +55,6 @@ export default function HomePage() {
   };
 
   const handleRegisterSubmit = async (e) => {
-    setTimeout(() => setBackdrop(true), 6000);
     e.preventDefault();
     try {
       const config = {
