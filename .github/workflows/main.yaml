@@ -17,6 +17,7 @@ jobs:
           target: "/home/dumbmerch"
   build1:
     name: ssh
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
@@ -27,4 +28,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
+            cd /home/dumbmerch/dumbsound-be
             la
