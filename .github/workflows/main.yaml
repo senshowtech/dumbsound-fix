@@ -28,6 +28,10 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
+            cd /var/www/html
+            sudo rm -rf dumbsound
             cd /home/dumbmerch
             mv build dumbsound
             sudo mv dumbsound /var/www/html
+            sudo service nginx restart
+            sudo service nginx status
