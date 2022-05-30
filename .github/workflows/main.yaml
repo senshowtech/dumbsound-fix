@@ -2,7 +2,7 @@ name: scp files
 on: [push]
 jobs:
   build:
-    name: Build
+    name: scp
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,12 +15,8 @@ jobs:
           port: 22
           source: "build"
           target: "/home/dumbmerch"
-
-name: remote ssh command
-on: [push]
-jobs:
-  build:
-    name: Build
+  build1:
+    name: ssh
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
