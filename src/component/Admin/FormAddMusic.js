@@ -24,10 +24,22 @@ export default function FormAddMusic({
 }) {
   return (
     <Box sx={{ width: { xs: 350, md: 600 } }}>
-      {loading.alert ? (
+      {loading.alert === "Data Telah Ditambahkan" ? (
         <Box>
           <Alert severity="success" sx={{ mb: 2, pl: 5, pr: 5 }}>
             Data telah di tambahkan
+          </Alert>
+        </Box>
+      ) : loading.alert === "Tambahkan data Thumbnail" ? (
+        <Box>
+          <Alert severity="error" sx={{ mb: 2, pl: 5, pr: 5 }}>
+            Tambahkan data Thumbnail
+          </Alert>
+        </Box>
+      ) : loading.alert === "Tambahkan data Musik" ? (
+        <Box>
+          <Alert severity="error" sx={{ mb: 2, pl: 5, pr: 5 }}>
+            Tambahkan data Musik
           </Alert>
         </Box>
       ) : null}

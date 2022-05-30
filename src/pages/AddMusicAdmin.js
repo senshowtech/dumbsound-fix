@@ -25,7 +25,7 @@ export default function AddMusicAdmin() {
   });
   const [loading, setLoading] = React.useState({
     button: false,
-    alert: false,
+    alert: "",
   });
   const [artist, setArtist] = React.useState([]);
   const [artistValue, setartistValue] = React.useState("");
@@ -86,10 +86,38 @@ export default function AddMusicAdmin() {
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    setLoading({
-      ...loading,
-      button: true,
-    });
+    if (thumbnail.current === null) {
+      setLoading({
+        alert: "Tambahkan data Thumbnail",
+        button: false,
+      });
+      setTimeout(
+        () =>
+          setLoading({
+            ...loading,
+            button: false,
+          }),
+        2000
+      );
+    } else if (song.current === null) {
+      setLoading({
+        alert: "Tambahkan data Musik",
+        button: false,
+      });
+      setTimeout(
+        () =>
+          setLoading({
+            ...loading,
+            button: false,
+          }),
+        2000
+      );
+    } else {
+      setLoading({
+        ...loading,
+        button: true,
+      });
+    }
     try {
       const config = {
         headers: {
@@ -109,14 +137,14 @@ export default function AddMusicAdmin() {
       const response = await API.post("music/add", formData, config);
       if (response.status === 201) {
         setLoading({
-          alert: true,
+          alert: "Data Telah Ditambahkan",
           button: false,
         });
       }
       setTimeout(
         () =>
           setLoading({
-            alert: false,
+            ...loading,
             button: false,
           }),
         2000
