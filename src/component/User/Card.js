@@ -15,20 +15,19 @@ import { useNavigate } from "react-router-dom";
 export default function Cards({ music, handleOpenMusic, status }) {
   const navigate = useNavigate();
   return (
-    <div style={{ marginLeft: 10, marginRight: 10 }}>
-      <Box
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
-      >
-        <Box sx={{ flexGrow: 1 }}>
+    <Box>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box sx={{ flexGrow: 1, ml: 2, mr: { xs: 2 } }}>
           <Grid container spacing={2}>
             {music?.map((value) => {
               return (
-                <Grid key={value.id} item xs={6} md={3}>
+                <Grid key={value.id} item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
-                      maxWidth: 345,
+                      maxWidth: { xs: "100%", md: 345 },
                       backgroundColor: "#3A3A3A",
-                      marginBottom: 10,
+                      marginBottom: { xs: 2, md: 5 },
+                      borderRadius: 5,
                     }}
                   >
                     <CardHeader
@@ -48,12 +47,18 @@ export default function Cards({ music, handleOpenMusic, status }) {
                         </Typography>
                       }
                     />
-                    <CardMedia
-                      style={{ padding: 10, borderRadius: 20 }}
-                      component="img"
-                      height="194"
+                    <img
+                      style={{
+                        display: "block",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: "100%",
+                        height: 194,
+                        padding: 8,
+                        borderRadius: 15,
+                      }}
                       src={value.thumbnail}
-                      alt="Paella dish"
+                      alt="..."
                     />
                     <Box
                       sx={{
@@ -109,6 +114,6 @@ export default function Cards({ music, handleOpenMusic, status }) {
           </Grid>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }
