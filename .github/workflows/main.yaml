@@ -28,5 +28,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd /home/dumbmerch/dumbsound-be
-            ls
+            cd /home/dumbmerch
+            mv build dumbsound
+            sudo mv dumbsound /var/www/html
