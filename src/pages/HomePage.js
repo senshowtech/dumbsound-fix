@@ -17,6 +17,9 @@ export default function HomePage() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [music, setMusic] = React.useState(null);
   const [backdrop, setBackdrop] = React.useState(false);
+  const [gender, setGender] = React.useState("male");
+  const [page, setPage] = React.useState(1);
+  const [search, setSearch] = React.useState(null);
 
   const [openLogin, setOpenLogin] = React.useState(false);
   const handleOpenLogin = () => setOpenLogin(true);
@@ -26,18 +29,15 @@ export default function HomePage() {
   const handleOpenRegister = () => setOpenRegister(true);
   const handleCloseRegister = () => setOpenRegister(false);
 
-  const [gender, setGender] = React.useState("male");
   const [alertLogin, setalertLogin] = React.useState({
     alert: false,
     message: "",
   });
-
   const [alertRegister, setalertRegister] = React.useState({
     alert: false,
     message: "",
   });
 
-  const [page, setPage] = React.useState(1);
   const handleChangePage = (event, value) => {
     setPage(value);
   };
@@ -52,6 +52,24 @@ export default function HomePage() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const Search = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    if (e.target.search.value === "") {
+      setSearch(null);
+    } else {
+      let data = {
+        title: e.target.search.value,
+      };
+      const dataTitle = await API.post("/musics/search/", data, config);
+      setSearch(dataTitle.data.musics);
+    }
   };
 
   const handleRegisterSubmit = async (e) => {
@@ -199,6 +217,8 @@ export default function HomePage() {
           page={page}
           handleChangePage={handleChangePage}
           setOpenLogin={setOpenLogin}
+          Search={Search}
+          search={search}
         />
       </Box>
     </Box>
