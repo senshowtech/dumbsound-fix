@@ -23,7 +23,6 @@ export default function Cards({
   Search,
   search,
 }) {
-  console.log(search);
   return (
     <Box>
       <Box

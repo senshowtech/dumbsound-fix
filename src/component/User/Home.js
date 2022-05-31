@@ -1,6 +1,5 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-import { API } from "../../config/axios";
 import React from "react";
 import Cards from "./Card";
 import Typography from "@mui/material/Typography";
@@ -8,49 +7,17 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 
-export default function Home() {
-  const [music, setMusic] = React.useState(null);
-  const [status, setStatus] = React.useState(null);
-  const [attache, setAttache] = React.useState({
-    attache: "",
-    title: "",
-  });
-  const [hideMusic, sethideMusic] = React.useState(false);
-
-  const handleOpenMusic = async (id) => {
-    try {
-      sethideMusic(true);
-      const response = await API.get("/music/" + id);
-      setAttache({
-        attache: response.data.data.musics.attache,
-        title: response.data.data.musics.title,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  React.useEffect(() => {
-    const getMusic = async () => {
-      try {
-        const response = await API.get("/musics");
-        setMusic(response.data.data.musics);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getMusic();
-    const getUserStatus = async () => {
-      try {
-        const response = await API.get("/transactions/user");
-        setStatus(response.data.data.dataTransaction.status);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getUserStatus();
-  }, []);
-
+export default function Home({
+  music,
+  status,
+  handleOpenMusic,
+  attache,
+  hideMusic,
+  page,
+  handleChangePage,
+  Search,
+  search,
+}) {
   return (
     <Box>
       <Typography
@@ -61,7 +28,15 @@ export default function Home() {
       >
         Dengarkan Dan Rasakan
       </Typography>
-      <Cards music={music} status={status} handleOpenMusic={handleOpenMusic} />
+      <Cards
+        Search={Search}
+        search={search}
+        music={music}
+        page={page}
+        handleChangePage={handleChangePage}
+        status={status}
+        handleOpenMusic={handleOpenMusic}
+      />
       <AppBar
         position="fixed"
         color="transparent"
